@@ -83,7 +83,7 @@ CSSImage.prototype.scss = function(filepath, width, height, root, options) {
 };
 
 CSSImage.prototype.url = function(filepath, root, retina) {
-  return "url(" + this.normalizePath(filepath, root, retina) + ")";
+  return "url(\"" + this.normalizePath(filepath, root, retina) + "\")";
 };
 
 CSSImage.prototype.normalizePath = function(filepath, root, retina) {
