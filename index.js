@@ -36,9 +36,13 @@ CSSImage.prototype.scssVars = function(filepath, _width, _height, options) {
   var root = (options && options.root) || "";
   var retina = options && !!options.retina;
 
-  return "$" + name + "__width: " + width + "px;\n" +
+  return "$" + name + ": (\n" +
+         "\twidth: " + width + "px,\n" +
+         "\theight: " + height + "px\n" +
+         ");\n" +
+         "$" + name + "__width: " + width + "px;\n" +
          "$" + name + "__height: " + height + "px;\n" +
-         "$" + name + "__path: '" + this.normalizePath(filepath, root, retina) + "';\n";
+         "$" + name + "__path: '" + this.normalizePath(filepath, root, retina) + "';\n\n";
 };
 
 CSSImage.prototype.scssMixin = function(filepath, _width, _height, root, options) {
