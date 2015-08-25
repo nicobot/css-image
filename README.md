@@ -56,6 +56,11 @@ result is
     background-size: 400px 300px; 
   } 
 } 
+$img_t: (
+  width: 400px,
+  height: 300px
+);
+
 $img_t__width: 400px; 
 $img_t__height: 300px; 
 $img_t__path: 'root/t-50pc.png'; 
@@ -65,6 +70,11 @@ $img_t__path: 'root/t-50pc.png';
   background-image: url(root/t.png); 
   background-size: 200px 150px; 
 } 
+$img_t-s2: (
+  width: 200px,
+  height: 150px
+);
+
 $img_t-s2__width: 200px; 
 $img_t-s2__height: 150px;
 $img_t-s2__path: 'root/t.png'; 
@@ -142,6 +152,11 @@ $img_t-s2__path: 'root/t.png';
       background-size: 400px 300px; 
     } 
   } 
+  $img_t: (
+    width: 400px,
+    height: 300px
+  );
+
   $img_t__width: 400px; 
   $img_t__height: 300px; 
   $img_t__path: 'root/t.png'; 
@@ -174,6 +189,11 @@ $img_t-s2__path: 'root/t.png';
     background-image: url(root/t.png); 
     background-size: 400px 300px; 
   } 
+  $img_t: (
+    width: 400px,
+    height: 300px
+  );
+
   $img_t__width: 400px; 
   $img_t__height: 300px; 
   $img_t__path: 'root/t.png';
@@ -183,6 +203,11 @@ $img_t-s2__path: 'root/t.png';
     background-image: url(root/t.png); 
     background-size: 200px 150px; 
   } 
+  $img_t-s2: (
+    width: 200px,
+    height: 150px
+  );
+
   $img_t-s2__width: 200px; 
   $img_t-s2__height: 150px;
   $img_t-s2__path: 'root/t.png';
