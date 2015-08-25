@@ -40,8 +40,8 @@ CSSImage.prototype.scssVars = function(filepath, _width, _height, options) {
   return "$" + name + ": (\n" +
          "\twidth: " + width + "px,\n" +
          "\theight: " + height + "px\n" +
-         "\tfullpath: " + fullpath + "px\n" +
-         "\tpath: " + filepath + "px\n" +
+         "\tfullpath: \"" + fullpath + "\"\n" +
+         "\tpath: \"" + filepath + "\"\n" +
          ");\n" +
          "$" + name + "__width: " + width + "px;\n" +
          "$" + name + "__height: " + height + "px;\n" +
