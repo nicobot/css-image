@@ -35,14 +35,17 @@ CSSImage.prototype.scssVars = function(filepath, _width, _height, options) {
   var height = Math.floor(_height / squeeze);
   var root = (options && options.root) || "";
   var retina = options && !!options.retina;
+  var fullpath = this.normalizePath(filepath, root, retina);
 
   return "$" + name + ": (\n" +
          "\twidth: " + width + "px,\n" +
          "\theight: " + height + "px\n" +
+         "\tfullpath: " + fullpath + "px\n" +
+         "\tpath: " + filepath + "px\n" +
          ");\n" +
          "$" + name + "__width: " + width + "px;\n" +
          "$" + name + "__height: " + height + "px;\n" +
-         "$" + name + "__path: '" + this.normalizePath(filepath, root, retina) + "';\n\n";
+         "$" + name + "__path: '" + fullpath + "';\n\n";
 };
 
 CSSImage.prototype.scssMixin = function(filepath, _width, _height, root, options) {
