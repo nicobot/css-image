@@ -39,12 +39,25 @@ CSSImage.prototype.scssVars = function (filepath, _width, _height, options) {
   var root = (options && options.root) || "";
   var retina = options && (("retina" in options) && (typeof options.retina === "string") ?
     options.retina : !!options.retina);
-  var fullpath = this.normalizePath(filepath, root, retina);
+  var retina_fullpath = var no_retina_fullpath = var fullpath = this.normalizePath(filepath, root, options);
+  var retina_filepath = this.retinaFilepath(filepath, options);
+
+  if (!!retina) {
+    var no_retina_options = extend({retina: false}, options);
+    no_retina_fullpath = this.normalizePath(filepath, root, no_retina_options);
+  } else {
+    var retina_options = extend({retina: true}, options);
+    retina_fullpath = this.normalizePath(filepath, root, retina_options);
+    retina_filepath = this.retinaFilepath(filepath, retina_options);
+  }
 
   return "$" + name + ": (\n" +
          "\twidth: " + width + "px,\n" +
          "\theight: " + height + "px,\n" +
-         "\tfullpath: \"" + fullpath + "\",\n" +
+         "\tretina: " + retina ? 1 : 0 + ",\n" +
+         "\tretina_fullpath: " + retina_fullpath ? 1 : 0 + ",\n" +
+         "\tretina_path: " + retina_filepath ? 1 : 0 + ",\n" +
+         "\tfullpath: \"" + no_retina_fullpath + "\",\n" +
          "\tpath: \"" + filepath + "\"\n" +
          ");\n" +
          "$" + name + "__width: " + width + "px;\n" +
@@ -94,12 +107,20 @@ CSSImage.prototype.normalizePath = function (filepath, root, retina) {
   var name = libpath.basename(filepath);
   var ext = libpath.extname(filepath);
   if (!!retina) {
-    var postfix = (typeof retina === "string") ? retina : "-50pc";
-    name = name.replace(ext, postfix + ext);
+    name = this.retinaFilepath(filepath, retina);
   }
+  
   var normalizedPath = libpath.join(this.normalizeFolder(filepath, root), name);
   normalizedPath = normalizedPath.replace(rxReplacePath, "/");
   return normalizedPath;
+};
+
+CSSImage.prototype.retinaFilepath = function (filepath, root, retina) {
+  var name = libpath.basename(filepath);
+  var ext = libpath.extname(filepath);
+  var postfix = (typeof retina === "string") ? retina : "-50pc";
+  
+  return name.replace(ext, postfix + ext);
 };
 
 CSSImage.prototype.normalizeFolder = function (filepath, root) {
